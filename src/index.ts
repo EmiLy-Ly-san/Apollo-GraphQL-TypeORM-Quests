@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
-import { Cartoon } from "./schemas/cartoon.shema";
+import { Cartoon, CartoonInput } from "./schemas/cartoon.shema";
 import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
 
 // A schema is a collection of type definitions (hence "typeDefs")
@@ -12,6 +12,7 @@ const typeDefs = `#graphql
 
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
   type Cartoon ${Cartoon}
+	type CartoonInput ${CartoonInput}
 	# This "Personnage" type defines the queryable fields for every personnage in our data source.
 	type Personnage ${Personnage}
 	#nouvel input de données Personnage Input est renseigné ci-dessous.
