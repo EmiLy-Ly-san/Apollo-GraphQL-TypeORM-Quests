@@ -1,6 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-
+import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
+import { Cartoon } from "./schemas/cartoon.shema";
 import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
 
 // A schema is a collection of type definitions (hence "typeDefs")
@@ -10,11 +11,11 @@ const typeDefs = `#graphql
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
-  type Cartoon {
-    id: ID
-    name: String
-    description: String
-  }
+  type Cartoon ${Cartoon}
+	# This "Personnage" type defines the queryable fields for every personnage in our data source.
+	type Personnage ${Personnage}
+	#nouvel input de données Personnage Input est renseigné ci-dessous.
+	type PersonnageInput ${PersonnageInput}
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
