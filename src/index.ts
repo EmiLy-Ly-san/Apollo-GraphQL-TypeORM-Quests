@@ -1,8 +1,27 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
-import { Cartoon, CartoonInput } from "./schemas/cartoon.shema";
-import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
+// import { Personnage } from "./schemas/personnage.schema";
+// import { Cartoon } from "./schemas/cartoon.shema";
+// import {
+// 	createCartoon,
+// 	getCartoons,
+// 	getOneCartoonById,
+// } from "./resolvers/cartoon.resolver";
+
+import {
+	getCartoons,
+	getOneCartoonById,
+	createCartoon,
+	deleteCartoon,
+} from "./resolvers/cartoon.resolver";
+import {
+	typeDef as Cartoon,
+	inputDef as CartoonInput,
+} from "./schemas/cartoon.shema";
+import {
+	typeDef as Personnage,
+	inputDef as PersonnageInput,
+} from "./schemas/personnage.schema";
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -12,11 +31,10 @@ const typeDefs = `#graphql
 
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
   type Cartoon ${Cartoon}
-	type CartoonInput ${CartoonInput}
-	# This "Personnage" type defines the queryable fields for every personnage in our data source.
-	type Personnage ${Personnage}
-	#nouvel input de données Personnage Input est renseigné ci-dessous.
-	type PersonnageInput ${PersonnageInput}
+  type Personnage ${Personnage}
+
+  input PersonnageInput ${PersonnageInput}
+  input CartoonInput ${CartoonInput}
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
@@ -24,6 +42,11 @@ const typeDefs = `#graphql
   type Query {
     getCartoons: [Cartoon],
     getOneCartoonById(id: ID!): Cartoon,
+  }
+
+  type Mutation {
+    createCartoon(cartoon: CartoonInput): Int,
+    deleteCartoon(id: ID!): Boolean
   }
 `;
 
@@ -33,6 +56,10 @@ const resolvers = {
 	Query: {
 		getCartoons,
 		getOneCartoonById,
+	},
+	Mutation: {
+		createCartoon,
+		deleteCartoon,
 	},
 };
 

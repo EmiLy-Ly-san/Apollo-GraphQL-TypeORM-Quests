@@ -1,4 +1,4 @@
-export const Cartoon = `{
+export const typeDef = `{
   id: ID
   name: String
   description: String
@@ -11,8 +11,8 @@ export const Cartoon = `{
   personnages: [Personnage]
 }`;
 
-export const CartoonInput = `{
-    name: String
+export const inputDef = `{
+  name: String
   description: String
   nb_of_episodes: Int
   nb_of_seasons: Int
@@ -20,5 +20,5 @@ export const CartoonInput = `{
   realisator: String
   author: String
   ft_diffusion: String
-  personnages: [Personnage]
+  personnages: [PersonnageInput]
 }`;
