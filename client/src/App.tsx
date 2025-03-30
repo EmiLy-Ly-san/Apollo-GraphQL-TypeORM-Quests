@@ -3,12 +3,13 @@ import "./App.css";
 import { GET_ALL_CARTOONS } from "./shemas/cartoon.schema";
 import Card from "./components/Card";
 
-type Cartoons = {
+type GetAllCartoonsType = {
 	getCartoons: { id: string; author: string; description: string }[];
 };
 
 function App() {
-	const { loading, error, data } = useQuery<Cartoons>(GET_ALL_CARTOONS);
+	const { loading, error, data } =
+		useQuery<GetAllCartoonsType>(GET_ALL_CARTOONS);
 	console.log(data);
 
 	if (loading) return <p>Loading in progress...</p>;
