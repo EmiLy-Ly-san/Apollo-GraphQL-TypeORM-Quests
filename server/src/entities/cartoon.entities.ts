@@ -44,6 +44,7 @@ export class Cartoon extends BaseEntity {
 	@OneToMany(
 		() => Personnage,
 		(personnage) => personnage.cartoon,
+		{ cascade: true }, // Par defaut TypeORM ne cascade pas la creation des entites. il faut l'ajouter en parametre a notre entite.
 	)
 	personnages?: Personnage[];
 }
