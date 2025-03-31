@@ -1,9 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+	BaseEntity,
+	Column,
+	Entity,
+	OneToMany,
+	PrimaryGeneratedColumn,
+} from "typeorm";
 import { Genre } from "./genre.entities";
 import { Personnage } from "./personnage.entities";
 
 @Entity()
-export class Cartoon {
+export class Cartoon extends BaseEntity {
+	// Active Record | BaseEntity permet a l'instance de recuperer les methodes de manipulation de donnees
 	@PrimaryGeneratedColumn()
 	id: number;
 
