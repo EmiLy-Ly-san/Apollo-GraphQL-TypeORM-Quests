@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Cartoon } from "./cartoon.entities";
 
 @Entity()
 export class Genre {
@@ -7,4 +8,10 @@ export class Genre {
 
 	@Column()
 	name: string;
+
+	@ManyToOne(
+		() => Cartoon,
+		(cartoon) => cartoon.genres,
+	)
+	cartoon: Cartoon;
 }
