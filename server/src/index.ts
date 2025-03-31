@@ -1,12 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-// import { Personnage } from "./schemas/personnage.schema";
-// import { Cartoon } from "./schemas/cartoon.shema";
-// import {
-// 	createCartoon,
-// 	getCartoons,
-// 	getOneCartoonById,
-// } from "./resolvers/cartoon.resolver";
+import "reflect-metadata";
 
 import {
 	getCartoons,
